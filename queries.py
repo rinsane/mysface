@@ -41,9 +41,9 @@ def queries_by_files(cur, files):
             print(f"{RED}{e}{RESET}\n")
 
 def run_queries(cur):
-    # files = ["Assignment1/tables", "Assignment1/checkers", "Assignment1/questions"]
-    files = ["Assignment1/tables", "Assignment1/checkers", "Assignment1/"]
-    files = ["Assignment1/", "Assignment1/checkers", "Assignment1/questions"]
+    files = ["Assignment1/tables", "Assignment1/checkers", "Assignment1/questions"]
+    # files = ["Assignment1/tables", "Assignment1/checkers", "Assignment1/"]
+    # files = ["Assignment1/", "Assignment1/checkers", "Assignment1/questions"]
     queries_by_files(cur, files)
     
 def display_results(res, headings):

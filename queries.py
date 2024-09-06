@@ -2,18 +2,20 @@ from prettytable import PrettyTable
 
 def run_queries(cur):
     try:
-        queries = [
-            ("SELECT user, host, plugin FROM mysql.user WHERE user = 'root';", ["User", "Host", "Plugin"]),
-            ("SHOW DATABASES;", ["Database"]),
-            ("CREATE DATABASE students;", [])
-        ]
+        with open("queries.sql", 'r') as f:
+            queries = f.read()
+            queries = queries.split(';')
+        queries = [i.strip('\n') for i in queries][:len(queries)-1]
 
-        for query, headings in queries:
+        print(queries)
+        for query in queries:
             print(f"\nExecuted query: {query}")
-            cur.execute(query)
-            if headings:
-                results = cur.fetchall()
-                display_results(results, headings)
+            cur.execute(query + ';')
+            results = cur.fetchall()
+            # print(results)
+            headings = [i[0] for i in cur.description]
+            # print(headings)
+            display_results(results, headings)
     except Exception as e:
         print("\nAn exception occurred!")
         print(e, '\n')
